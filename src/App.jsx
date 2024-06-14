@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Create from "./pages/Create";
+import RecipeDetail from "./pages/RecipeDetail";
 
 //components
 import Error from "./components/Error";
@@ -45,6 +46,10 @@ function App() {
         {
           path: "/create",
           element: <Create />,
+        },
+        {
+          path: "/recipedetail",
+          element: <RecipeDetail />,
         },
       ],
     },

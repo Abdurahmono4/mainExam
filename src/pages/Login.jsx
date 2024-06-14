@@ -7,6 +7,7 @@ import videoLog from "../video/fruit-cut.mp4";
 import { useDispatch } from "react-redux";
 import { login } from "../features/userSlice";
 import { toast } from "react-hot-toast";
+
 function Login() {
   const dispatch = useDispatch();
   const { signWithGoogle } = useRegister();
@@ -16,14 +17,14 @@ function Login() {
     const email = e.target.email.value;
     const password = e.target.password.value;
     dispatch(login(email, password));
-    toast.success("Your account has been");
+    toast.success("You are successfully logged in!");
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r ">
+    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500 relative">
       <video
         src={videoLog}
-        className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto transform -translate-x-1/2 -translate-y-1/2 z-[-1]"
+        className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto transform -translate-x-1/2 -translate-y-1/2 z-[-1] object-cover"
         muted
         autoPlay
         loop
@@ -31,7 +32,7 @@ function Login() {
       <Form
         method="post"
         onSubmit={handleLogin}
-        className="card w-96 p-8shadow-lg rounded-lg flex flex-col gap-y-4 bg-gray-200/45 p-10"
+        className="card w-full sm:w-96 md:w-80 lg:w-96 p-8 shadow-lg rounded-lg flex flex-col gap-y-4 bg-gray-200/45 backdrop-blur-md"
       >
         <h4 className="text-center font-bold text-3xl">Login</h4>
         <input
@@ -61,7 +62,7 @@ function Login() {
           <span className="text-lg">Google</span>
         </button>
         <p className="text-center">
-          Are you alreadey registerad ?
+          Are you already registered?
           <Link className="link text-cyan-400" to="/register">
             Register
           </Link>
