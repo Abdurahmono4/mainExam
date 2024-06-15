@@ -13,6 +13,8 @@ function Navbar() {
   const dispatch = useDispatch();
   const [weatherCondition, setWeatherCondition] = useState("");
 
+  const totalAmount = useSelector((state) => state.products.totalAmount);
+
   const logOut = () => {
     signOut(auth)
       .then(() => {
@@ -53,7 +55,9 @@ function Navbar() {
     >
       <div className="navbar items-center text-center justify-between p-4">
         <div className="navbar-start flex items-center text-center ">
-          <a className="btn btn-ghost items-center  text-xl ">daisyUI</a>
+          <a className="btn btn-ghost items-center  text-2xl hidden md:block  mt-3">
+            daisyUI
+          </a>
           <Weather
             className="font-medium w-96 justify-between "
             setWeatherCondition={setWeatherCondition}
@@ -114,9 +118,7 @@ function Navbar() {
                   <span className="font-bold text-lg">8 Items</span>
                   <span className="text-info">Subtotal: $999</span>
                   <div className="card-actions">
-                    <button className="btn btn-primary btn-block">
-                      View cart
-                    </button>
+                    <span className="cart-count">{totalAmount}</span>
                   </div>
                 </div>
               </div>

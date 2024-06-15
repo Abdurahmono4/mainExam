@@ -23,7 +23,6 @@ const Weather = ({ setWeatherCondition }) => {
         console.error("Error fetching weather data:", error);
       }
     };
-
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -57,11 +56,9 @@ const Weather = ({ setWeatherCondition }) => {
   return (
     <div className="flex items-center">
       {weather ? (
-        <div className="text-center flex gap-3 ">
+        <div className="text-center flex gap-3 sm:text-sm">
           <p className="text-xl font-semibold">{weather.name}</p>
-          <p className="text-lg">{weather.main.temp}°C</p>
-          <p className="text-lg">{weather.wind.speed} m/s</p>
-          <p className="text-lg">{weather.clouds.all}%</p>
+          <p className="text-lg sm:text-sm">{weather.main.temp}°C</p>
         </div>
       ) : (
         <p>Loading...</p>

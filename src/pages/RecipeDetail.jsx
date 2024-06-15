@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { BsCart3 } from "react-icons/bs";
-import {
-  addProduct,
-  decreaseAmount,
-  increaseAmount,
-} from "../features/productSlice";
+import { addProduct } from "../features/productSlice";
 
 function RecipeDetail() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const dispatch = useDispatch();
-  const amount = useSelector((state) => state.amount);
-  const product = useSelector((state) => state.products);
-  console.log(amount);
+  const navigate = useNavigate();
+
+  const products = useSelector((state) => state.products.products);
+  const product = products.find((item) => item.id === id);
+
   useEffect(() => {
     const fetchRecipe = async () => {
       const docRef = doc(db, "recipes", id);
@@ -36,6 +34,7 @@ function RecipeDetail() {
 
   const handleAddToCart = () => {
     dispatch(addProduct({ ...recipe, id }));
+    navigate("/cart"); // Navigate to cart page after adding item
   };
 
   return (
@@ -108,7 +107,7 @@ function RecipeDetail() {
         <div className="rounded-lg bg-slate-200 w-28 items-center justify-center flex gap-4">
           <button
             className="text-orange-500 text-3xl cursor-pointer"
-            onClick={() => product && dispatch(decreaseAmount(id))}
+            onClick={() => dispatch(decreaseAmount(id))}
             disabled={!product || product.amount === 0}
           >
             -
@@ -116,14 +115,14 @@ function RecipeDetail() {
           <button>{product ? product.amount : 0}</button>
           <button
             className="text-orange-500 text-2xl"
-            onClick={() => product && dispatch(increaseAmount(id))}
+            onClick={() => dispatch(increaseAmount(id))}
           >
             +
           </button>
         </div>
         <button
           className="btn btn-secondary bg-orange-500 w-48 add"
-          onClick={console.log("salom")}
+          onClick={handleAddToCart}
         >
           <BsCart3 className="" />
           Add to cart
