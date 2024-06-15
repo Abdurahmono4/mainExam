@@ -31,7 +31,6 @@ function Home() {
       toast.error("Error deleting recipe: " + error.message);
     }
   };
-
   return (
     <div className=" container-class mt-12 sm:mt-5">
       <h1 className="text-3xl font-bold text-center items-center ml-auto mr-auto mb-12">

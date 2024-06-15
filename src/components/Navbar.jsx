@@ -55,7 +55,7 @@ function Navbar() {
         <div className="navbar-start flex items-center text-center ">
           <a className="btn btn-ghost items-center  text-xl ">daisyUI</a>
           <Weather
-            className="font-medium"
+            className="font-medium w-96 justify-between "
             setWeatherCondition={setWeatherCondition}
           />
         </div>
