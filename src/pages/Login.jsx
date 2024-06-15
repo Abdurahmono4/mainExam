@@ -3,7 +3,6 @@ import { useRegister } from "../hooks/useRegister";
 import { Link } from "react-router-dom";
 import { Form } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import videoLog from "../video/fruit-cut.mp4";
 import { useDispatch } from "react-redux";
 import { login } from "../features/userSlice";
 import { toast } from "react-hot-toast";
@@ -22,13 +21,6 @@ function Login() {
 
   return (
     <div className="h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500 relative">
-      <video
-        src={videoLog}
-        className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto transform -translate-x-1/2 -translate-y-1/2 z-[-1] object-cover"
-        muted
-        autoPlay
-        loop
-      ></video>
       <Form
         method="post"
         onSubmit={handleLogin}
@@ -63,7 +55,7 @@ function Login() {
         </button>
         <p className="text-center">
           Are you already registered?
-          <Link className="link text-cyan-400" to="/register">
+          <Link className="link text-cyan-700 ml-1" to="/register">
             Register
           </Link>
         </p>

@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Create from "./pages/Create";
 import RecipeDetail from "./pages/RecipeDetail";
+import Chart from "./pages/Chart";
 
 //components
 import Error from "./components/Error";
@@ -37,7 +38,7 @@ function App() {
           <MainLayout />
         </ProtectedRoutes>
       ),
-      errorElement: <Error />,
+      // errorElement: <Error />,
       children: [
         {
           index: true,
@@ -48,8 +49,12 @@ function App() {
           element: <Create />,
         },
         {
-          path: "/recipedetail",
+          path: "/recipe/:id",
           element: <RecipeDetail />,
+        },
+        {
+          path: "/chart",
+          element: <Chart />,
         },
       ],
     },
@@ -73,7 +78,7 @@ function App() {
     });
   }, [user]);
 
-  return <>{isAuthReady && <RouterProvider router={routes} />}</>;
+  return <>{<RouterProvider router={routes} />}</>;
 }
 
 export default App;

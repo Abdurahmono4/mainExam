@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { login } from "../features/userSlice"; // Import the correct action
 import { useState } from "react";
+import videoLog from "../video/fruit-cut.mp4";
 
 function Register() {
   const dispatch = useDispatch();
@@ -23,11 +24,18 @@ function Register() {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r  ">
+    <div className="h-screen flex items-center justify-center  ">
+      <video
+        src={videoLog}
+        className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto transform -translate-x-1/2 -translate-y-1/2 z-[-1] object-cover"
+        muted
+        autoPlay
+        loop
+      ></video>
       <Form
         method="post"
         onSubmit={handleRegister}
-        className="card w-96 p-8 shadow-lg rounded-lg flex flex-col gap-y-4"
+        className="card w-96 p-8 shadow-lg rounded-lg flex flex-col gap-y-4  bg-gray-100/50 "
       >
         <h4 className="text-center font-bold text-3xl text-gray-800">
           Register

@@ -25,13 +25,52 @@ function RecipeDetail() {
   if (!recipe) return <div>Loading...</div>;
 
   return (
-    <div className="container mx-auto mt-20">
+    <div className="container-class mx-auto mt-20 ml-auto mr-auto">
       <h1 className="text-3xl font-bold text-center mb-6">{recipe.title}</h1>
-      <img
-        src={recipe.image}
-        alt={recipe.title}
-        className="w-full h-96 object-cover mb-6"
-      />
+      <div className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
+        <div className="carousel-item">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg"
+            className="rounded-box"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg"
+            className="rounded-box"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg"
+            className="rounded-box"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg"
+            className="rounded-box"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.jpg"
+            className="rounded-box"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.jpg"
+            className="rounded-box"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg"
+            className="rounded-box"
+          />
+        </div>
+      </div>
       <p className="text-lg">{recipe.method}</p>
       <p className="text-lg mt-4">
         <strong>Cooking Time:</strong> {recipe.cookingTime}

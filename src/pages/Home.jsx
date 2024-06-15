@@ -33,13 +33,15 @@ function Home() {
   };
 
   return (
-    <div className=" container-class mx-auto mt-20 ml-10 mr-20">
-      <h1 className="text-3xl font-bold text-center mb-6">Recipes</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className=" container-class mt-12 sm:mt-5">
+      <h1 className="text-3xl font-bold text-center items-center ml-auto mr-auto mb-12">
+        Recipess
+      </h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 ml-auto mr-auto">
         {recipes.map((recipe) => (
           <div
             key={recipe.id}
-            className="card bg-base-100 shadow-md rounded-lg overflow-hidden"
+            className="card bg-base-100 shadow-md rounded-lg overflow-hidden ml-auto mr-auto transform transition-transform duration-300 hover:scale-105 active:scale-95 hover:shadow-lg"
           >
             <figure>
               <img
