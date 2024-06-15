@@ -58,7 +58,7 @@ const Weather = ({ setWeatherCondition }) => {
       {weather ? (
         <div className="text-center flex gap-3 sm:text-sm">
           <p className="text-xl font-semibold">{weather.name}</p>
-          <p className="text-lg sm:text-sm">{weather.main.temp}°C</p>
+          <p className=" sm:text-sm">{weather.main.temp}°C</p>
         </div>
       ) : (
         <p>Loading...</p>
