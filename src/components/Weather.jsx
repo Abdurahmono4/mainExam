@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 const Weather = ({ setWeatherCondition }) => {
   const [weather, setWeather] = useState(null);
-  const [location, setLocation] = useState({ lat: null, lon: null });
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -20,29 +19,29 @@ const Weather = ({ setWeatherCondition }) => {
         }
       } catch (error) {
         setError(error.message);
-        console.error("Error fetching weather data:", error);
+        console.error("Error fetching data:", error);
       }
     };
+
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            setLocation({ lat: latitude, lon: longitude });
             fetchWeather(latitude, longitude);
           },
           (error) => {
             setError("Error getting location: " + error.message);
             console.error("Error getting location:", error);
-            // Default to Tashkent if location access is denied
-            fetchWeather(41.2995, 69.2401); // Coordinates for Tashkent
+            // Fetch weather for a default location if geolocation fails
+            fetchWeather(41.2995, 69.2401);
           }
         );
       } else {
         setError("Geolocation is not supported by this browser.");
         console.error("Geolocation is not supported by this browser.");
-        // Default to Tashkent if geolocation is not supported
-        fetchWeather(41.2995, 69.2401); // Coordinates for Tashkent
+        // Fetch weather for a default location if geolocation is not supported
+        fetchWeather(41.2995, 69.2401);
       }
     };
 
@@ -58,7 +57,7 @@ const Weather = ({ setWeatherCondition }) => {
       {weather ? (
         <div className="text-center flex gap-3 sm:text-sm">
           <p className="text-xl font-semibold">{weather.name}</p>
-          <p className=" sm:text-sm">{weather.main.temp}°C</p>
+          <p className="sm:text-sm">{weather.main.temp}°C</p>
         </div>
       ) : (
         <p>Loading...</p>
