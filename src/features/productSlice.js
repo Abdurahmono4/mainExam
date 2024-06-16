@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  amount: 0,
   products: [],
   price: 0,
+  product: {},
 };
 
 const productsSlice = createSlice({
@@ -12,7 +12,9 @@ const productsSlice = createSlice({
   reducers: {
     increaseAmount: (state, action) => {
       const product = state.products.find((p) => p.id === action.payload);
-      if (product.id) {
+      console.log(state.products);
+      console.log(action.payload);
+      if (product.title) {
         product.amount += 1;
         productsSlice.caseReducers.calculateTotal(state);
       }
@@ -38,7 +40,10 @@ const productsSlice = createSlice({
       if (existingProduct) {
         existingProduct.amount += 1;
       } else {
-        state.products.push({ ...action.payload, amount: 1 });
+        let a = [];
+        a.push({ ...action.payload, amount: 1 });
+        state.products = a;
+        console.log({ ...action.payload, amount: 1 });
       }
       productsSlice.caseReducers.calculateTotal(state);
     },
@@ -59,6 +64,13 @@ const productsSlice = createSlice({
       state.products = updatedProducts;
       productsSlice.caseReducers.calculateTotal(state);
     },
+    getOneProduct(state, action) {
+      console.log(action.payload + " action payload");
+      state.product = action.payload;
+      let a = [];
+      a.push(action.payload);
+      state.products = a;
+    },
   },
 });
 
@@ -70,6 +82,7 @@ export const {
   addItems,
   getProduct,
   removeProduct,
+  getOneProduct,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

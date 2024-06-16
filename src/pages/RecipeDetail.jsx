@@ -5,8 +5,11 @@ import { doc, getDoc } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { BsCart3 } from "react-icons/bs";
 import { addProduct } from "../features/productSlice";
-
-import { increaseAmount, decreaseAmount } from "../features/productSlice";
+import {
+  increaseAmount,
+  decreaseAmount,
+  getOneProduct,
+} from "../features/productSlice";
 import { login } from "../features/userSlice";
 
 function RecipeDetail() {
@@ -38,8 +41,6 @@ function RecipeDetail() {
   const handleAddToCart = () => {
     dispatch(addProduct({ ...recipe, id }));
   };
-
-  console.log(decreaseAmount, increaseAmount);
 
   return (
     <div className="container-class mx-auto mt-20 ml-auto mr-auto mb-10">

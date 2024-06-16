@@ -51,12 +51,9 @@ function Create() {
   };
 
   return (
-    <div className="cardAdd ml-auto mr-auto mt-20 w-1/3">
+    <div className="cardAdd mx-auto mt-10 w-full max-w-lg p-4 sm:p-6 lg:p-8 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl text-center font-bold mb-6">Create New Recipe</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="flex items-center flex-col gap-3"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <label className="form-control w-full">
           <div className="label">
             <span className="label-text">Title</span>
@@ -64,7 +61,7 @@ function Create() {
           <input
             type="text"
             placeholder="Type here"
-            className="input input-bordered w-full h-15"
+            className="input input-bordered w-full"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
           />
@@ -77,7 +74,7 @@ function Create() {
             <input
               type="text"
               placeholder="Type here"
-              className="input input-bordered w-full  h-15"
+              className="input input-bordered w-full"
               onChange={(e) => setIngredient(e.target.value)}
               value={ingredient}
             />
@@ -85,11 +82,11 @@ function Create() {
               Add
             </button>
           </div>
-          <div className="mt-1 w-20">
-            <p className="">
+          <div className="mt-2">
+            <p className="text-sm">
               Ingredients:{" "}
               {ingredients.map((ing) => (
-                <span className="flex-shrink-1 overflow-hidden" key={ing}>
+                <span key={ing} className="inline-block mr-1">
                   {ing},
                 </span>
               ))}
@@ -103,31 +100,29 @@ function Create() {
           <input
             type="number"
             placeholder="Type here"
-            className="input input-bordered  h-15"
+            className="input input-bordered w-full"
             onChange={(e) => setCookingTime(e.target.value)}
             value={cookingTime}
           />
         </label>
-        <label className="form-control w-full ">
+        <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Image:</span>
+            <span className="label-text">Image</span>
           </div>
           <input
             type="url"
             placeholder="Type here"
-            className="input input-bordered "
+            className="input input-bordered w-full"
             onChange={(e) => setImage(e.target.value)}
             value={image}
           />
         </label>
-        <label className="form-control w-full ">
+        <label className="form-control w-full">
           <div className="label">
             <span className="label-text">Category</span>
           </div>
           <select
-            name=""
-            id=""
-            className="select"
+            className="select select-bordered w-full"
             onChange={(e) => setCategories(e.target.value)}
             value={categories}
           >
@@ -141,13 +136,13 @@ function Create() {
             <span className="label-text">Method</span>
           </div>
           <textarea
-            className="textarea textarea-bordered h-24"
+            className="textarea textarea-bordered w-full h-24"
             placeholder="Method"
             onChange={(e) => setMethod(e.target.value)}
             value={method}
           ></textarea>
         </label>
-        <button type="submit" className="btn btn-secondary w-full mt-4 mb-3">
+        <button type="submit" className="btn btn-secondary w-full mt-4">
           Submit
         </button>
       </form>

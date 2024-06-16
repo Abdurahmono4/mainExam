@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebase/firebaseConfig";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { toast } from "react-hot-toast";
+
+import { getOneProduct } from "../features/productSlice";
+import { useDispatch } from "react-redux";
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -31,6 +41,22 @@ function Home() {
       toast.error("Error deleting recipe: " + error.message);
     }
   };
+
+  function getAProduct(id) {
+    const fetchRecipe = async () => {
+      const docRef = doc(db, "recipes", id);
+      return await getDoc(docRef);
+    };
+
+    fetchRecipe().then((res) => {
+      if (res.data().title) {
+        console.log(res.data());
+        dispatch(getOneProduct({ ...res.data(), id, amount: 0 }));
+        navigate("/recipe/" + id);
+      }
+    });
+  }
+
   return (
     <div className=" container-class mt-12 sm:mt-5">
       <h1 className="text-3xl font-bold text-center items-center ml-auto mr-auto mb-12">
@@ -63,7 +89,7 @@ function Home() {
               <div className="card-actions justify-between items-center mt-4">
                 <button
                   className="btn btn-primary btn-sm"
-                  onClick={() => navigate(`/recipe/${recipe.id}`)}
+                  onClick={() => getAProduct(recipe.id)}
                 >
                   Read More
                 </button>
