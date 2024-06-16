@@ -1,8 +1,11 @@
-import React from "react";
+import { useState } from "react";
+
 import { useSelector } from "react-redux";
 
 function CartPage() {
   const products = useSelector((state) => state.products.products);
+  const [sum, setSum] = useState(0);
+  const totalAmount = useSelector((state) => state.products.totalAmount);
 
   return (
     <div className="container-class mx-auto mt-10">
@@ -17,6 +20,20 @@ function CartPage() {
                 <div className="flex justify-between">
                   <span>{product.name}</span>
                   <span>{product.amount}</span>
+                </div>
+                <div
+                  tabIndex={0}
+                  className="mt-3 z-[1] card card-compact dropdown-content w-52 shadow"
+                >
+                  <div className="card-body">
+                    <span className="font-bold text-lg">
+                      {products.length} Items
+                    </span>
+                    <span className="text-info">Subtotal: ${sum}</span>
+                    <div className="card-actions">
+                      <span className="cart-count">{totalAmount}</span>
+                    </div>
+                  </div>
                 </div>
               </li>
             ))}

@@ -5,6 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
 import { BsCart3 } from "react-icons/bs";
 import { addProduct } from "../features/productSlice";
+
 import {
   increaseAmount,
   decreaseAmount,
@@ -18,16 +19,17 @@ function RecipeDetail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const products = useSelector((state) => state.products.products);
-  const product = products.find((item) => item.id === id);
+  const { products, product } = useSelector((state) => state.products);
+  console.log(products);
 
   useEffect(() => {
     const fetchRecipe = async () => {
       const docRef = doc(db, "recipes", id);
       const docSnap = await getDoc(docRef);
-
+      console.log(docSnap.exists());
       if (docSnap.exists()) {
         setRecipe(docSnap.data());
+        console.log(docSnap.data());
       } else {
         console.log("No such document!");
       }
@@ -42,13 +44,15 @@ function RecipeDetail() {
     dispatch(addProduct({ ...recipe, id }));
   };
 
+  console.log(decreaseAmount, increaseAmount);
+
   return (
     <div className="container-class mx-auto mt-20 ml-auto mr-auto mb-10">
       <h1 className="text-3xl font-bold text-center mb-6">{recipe.title}</h1>
-      <div className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box h-96">
+      <div className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
         <div className="carousel-item">
           <img
-            src={recipe.image}
+            src="https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/97/42/9c.jpg"
             className="rounded-box"
             alt="carousel-item-1"
           />

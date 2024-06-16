@@ -10,9 +10,10 @@ import Chart from "../pages/Chart";
 import Weather from "./Weather";
 function Navbar() {
   const { user } = useSelector((state) => state.currentUser);
+  const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [weatherCondition, setWeatherCondition] = useState("");
-
+  const [sum, setSum] = useState(0);
   const totalAmount = useSelector((state) => state.products.totalAmount);
 
   const logOut = () => {
@@ -40,13 +41,24 @@ function Navbar() {
     }
   };
 
+  function calculateSum() {
+    let summa = 0;
+    if (products.length > 0) {
+      for (let i = 0; i < products.length; i++) {
+        summa += products[i].amount * products[i].price;
+      }
+    }
+    setSum(summa);
+  }
+
   useEffect(() => {
     // Ensure weatherCondition is set correctly
     if (weatherCondition) {
       document.querySelector(".navbar").style.backgroundImage =
         getBackgroundImage();
     }
-  }, [weatherCondition]);
+    calculateSum();
+  }, [weatherCondition, products.length]);
 
   return (
     <div
@@ -55,11 +67,9 @@ function Navbar() {
     >
       <div className="navbar items-center text-center justify-between p-4">
         <div className="navbar-start flex items-center text-center ">
-          <Link to="/" className="flex items-center">
-            <a className="btn btn-ghost items-center  text-2xl hidden lg:block  mt-3">
-              MyKitchen
-            </a>
-          </Link>
+          <a className="btn btn-ghost items-center  text-2xl hidden lg:lock  mt-3">
+            daisyUI
+          </a>
           <Weather
             className="font-medium w-96 justify-between "
             setWeatherCondition={setWeatherCondition}
@@ -88,9 +98,8 @@ function Navbar() {
           </label>
 
           <div className="flex gap-6">
-            <div className="dropdown dropdown-end">
-              <Link to="/cartpage">
-                {" "}
+            <Link to="/cartpage">
+              <div className="dropdown dropdown-end">
                 <div
                   tabIndex={0}
                   role="button"
@@ -116,16 +125,13 @@ function Navbar() {
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                       />
                     </svg>
-                    <span className="badge badge-sm indicator-item">{}</span>
-                  </div>{" "}
+                    <span className="badge badge-sm indicator-item">
+                      {products.length}
+                    </span>
+                  </div>
                 </div>
-              </Link>
-
-              <div
-                tabIndex={0}
-                className="mt-3 z-[1] card card-compact dropdown-content w-52 shadow"
-              ></div>
-            </div>
+              </div>
+            </Link>
             <p className="mr-4 hidden lg:block mt-2">
               {user && user.displayName ? user.displayName : "Guest"}
             </p>
