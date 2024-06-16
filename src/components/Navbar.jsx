@@ -91,6 +91,11 @@ function Navbar() {
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle"
+                onClick={() => {
+                  document
+                    .querySelector(".dropdown-content")
+                    .classList.toggle("hidden");
+                }}
               >
                 <div className="indicator">
                   <svg

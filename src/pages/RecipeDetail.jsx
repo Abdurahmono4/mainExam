@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { BsCart3 } from "react-icons/bs";
 import { addProduct } from "../features/productSlice";
 
+import { increaseAmount, decreaseAmount } from "../features/productSlice";
+import { login } from "../features/userSlice";
+
 function RecipeDetail() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
@@ -34,8 +37,9 @@ function RecipeDetail() {
 
   const handleAddToCart = () => {
     dispatch(addProduct({ ...recipe, id }));
-    navigate("/cart"); // Navigate to cart page after adding item
   };
+
+  console.log(decreaseAmount, increaseAmount);
 
   return (
     <div className="container-class mx-auto mt-20 ml-auto mr-auto mb-10">
@@ -43,44 +47,54 @@ function RecipeDetail() {
       <div className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
         <div className="carousel-item">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg"
+            src="https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/97/42/9c.jpg"
             className="rounded-box"
             alt="carousel-item-1"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg"
+            src="https://zira.uz/wp-content/uploads/2020/01/kovurma-shurpa.jpg"
             className="rounded-box"
             alt="carousel-item-2"
+            width={604}
+            height={246}
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4kV_1xBvf3PhGXxL9pDBYrzj-efhbzLFK8w&s"
             className="rounded-box"
             alt="carousel-item-3"
+            width={604}
+            height={246}
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg"
+            src="https://cp.platina.uz/media/uploads/2023/12/20/photo_2023-12-20_14-07-05-2.jpg"
             className="rounded-box"
             alt="carousel-item-4"
+            width={704}
+            height={246}
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.jpg"
+            src="https://t3.ftcdn.net/jpg/03/56/15/56/360_F_356155654_KnID81u6eAFFmQU8cB7y4ThqUu8nJEUT.jpg"
             className="rounded-box"
             alt="carousel-item-5"
+            width={704}
+            height={246}
           />
         </div>
         <div className="carousel-item">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.jpg"
+            src="https://beksomsa.netlify.app/images/shorva.jpg"
             className="rounded-box"
             alt="carousel-item-6"
+            width={704}
+            height={246}
           />
         </div>
         <div className="carousel-item">

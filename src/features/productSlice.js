@@ -11,14 +11,14 @@ const productsSlice = createSlice({
   reducers: {
     increaseAmount: (state, action) => {
       const product = state.products.find((p) => p.id === action.payload);
-      if (product) {
+      if (product.id) {
         product.amount += 1;
         productsSlice.caseReducers.calculateTotal(state);
       }
     },
     decreaseAmount: (state, action) => {
       const product = state.products.find((p) => p.id === action.payload);
-      if (product && product.amount > 0) {
+      if (product.id && product.amount > 0) {
         product.amount -= 1;
         productsSlice.caseReducers.calculateTotal(state);
       }
