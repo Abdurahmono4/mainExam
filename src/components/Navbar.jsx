@@ -67,8 +67,8 @@ function Navbar() {
     >
       <div className="navbar items-center text-center justify-between p-4">
         <div className="navbar-start flex items-center text-center ">
-          <a className="btn btn-ghost items-center  text-2xl hidden lg:lock  mt-3">
-            daisyUI
+          <a className="btn btn-ghost items-center  text-2xl hidden lg:block  mt-3">
+            MyKitchen
           </a>
           <Weather
             className="font-medium w-96 justify-between "
