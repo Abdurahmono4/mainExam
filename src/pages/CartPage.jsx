@@ -5,7 +5,7 @@ function CartPage() {
   const products = useSelector((state) => state.products.products);
 
   return (
-    <div className="container mx-auto mt-10">
+    <div className="container-class mx-auto mt-10">
       <h1 className="text-3xl font-bold text-center mb-6">Shopping Cart</h1>
       <div className="cart-items">
         {products.length === 0 ? (

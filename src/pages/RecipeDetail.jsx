@@ -44,10 +44,10 @@ function RecipeDetail() {
   return (
     <div className="container-class mx-auto mt-20 ml-auto mr-auto mb-10">
       <h1 className="text-3xl font-bold text-center mb-6">{recipe.title}</h1>
-      <div className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
+      <div className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box h-96">
         <div className="carousel-item">
           <img
-            src="https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/97/42/9c.jpg"
+            src={recipe.image}
             className="rounded-box"
             alt="carousel-item-1"
           />

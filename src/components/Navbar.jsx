@@ -55,9 +55,11 @@ function Navbar() {
     >
       <div className="navbar items-center text-center justify-between p-4">
         <div className="navbar-start flex items-center text-center ">
-          <a className="btn btn-ghost items-center  text-2xl hidden lg:lock  mt-3">
-            daisyUI
-          </a>
+          <Link to="/" className="flex items-center">
+            <a className="btn btn-ghost items-center  text-2xl hidden lg:block  mt-3">
+              MyKitchen
+            </a>
+          </Link>
           <Weather
             className="font-medium w-96 justify-between "
             setWeatherCondition={setWeatherCondition}
@@ -87,46 +89,42 @@ function Navbar() {
 
           <div className="flex gap-6">
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle"
-                onClick={() => {
-                  document
-                    .querySelector(".dropdown-content")
-                    .classList.toggle("hidden");
-                }}
-              >
-                <div className="indicator">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                  <span className="badge badge-sm indicator-item">8</span>
+              <Link to="/cartpage">
+                {" "}
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle"
+                  onClick={() => {
+                    document
+                      .querySelector(".dropdown-content")
+                      .classList.toggle("hidden");
+                  }}
+                >
+                  <div className="indicator">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                      />
+                    </svg>
+                    <span className="badge badge-sm indicator-item">{}</span>
+                  </div>{" "}
                 </div>
-              </div>
+              </Link>
+
               <div
                 tabIndex={0}
                 className="mt-3 z-[1] card card-compact dropdown-content w-52 shadow"
-              >
-                <div className="card-body">
-                  <span className="font-bold text-lg">8 Items</span>
-                  <span className="text-info">Subtotal: $999</span>
-                  <div className="card-actions">
-                    <span className="cart-count">{totalAmount}</span>
-                  </div>
-                </div>
-              </div>
+              ></div>
             </div>
             <p className="mr-4 hidden lg:block mt-2">
               {user && user.displayName ? user.displayName : "Guest"}
