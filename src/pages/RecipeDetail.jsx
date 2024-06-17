@@ -20,7 +20,6 @@ function RecipeDetail() {
   const navigate = useNavigate();
 
   const { products, product } = useSelector((state) => state.products);
-  console.log(products);
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -47,7 +46,7 @@ function RecipeDetail() {
   console.log(decreaseAmount, increaseAmount);
 
   return (
-    <div className="container-class mx-auto mt-20 ml-auto mr-auto mb-10">
+    <div className="container-class mx-auto mt-20 ml-auto mr-auto ">
       <h1 className="text-3xl font-bold text-center mb-6">{recipe.title}</h1>
       <div className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
         <div className="carousel-item">
@@ -123,7 +122,7 @@ function RecipeDetail() {
         ))}
       </ul>
       <div className="mt-8 flex gap-9">
-        <div className="rounded-lg bg-slate-200 w-28 items-center justify-center flex gap-4">
+        <div className="rounded-lg bg-slate-200 w-28 items-center justify-center flex gap-4 mb-30">
           <button
             className="text-orange-500 text-3xl cursor-pointer"
             onClick={() => dispatch(decreaseAmount(id))}
