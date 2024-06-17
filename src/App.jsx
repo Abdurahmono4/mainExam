@@ -83,7 +83,7 @@ function App() {
     });
   }, [user]);
 
-  return <>{<RouterProvider router={routes} />}</>;
+  return isAuthReady && <RouterProvider router={routes} />;
 }
 
 export default App;

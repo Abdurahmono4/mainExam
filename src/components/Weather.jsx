@@ -40,7 +40,6 @@ const Weather = ({ setWeatherCondition }) => {
       } else {
         setError("Geolocation is not supported by this browser.");
         console.error("Geolocation is not supported by this browser.");
-        // Fetch weather for a default location if geolocation is not supported
         fetchWeather(41.2995, 69.2401);
       }
     };

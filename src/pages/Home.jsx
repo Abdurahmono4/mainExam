@@ -60,7 +60,7 @@ function Home() {
   return (
     <div className=" container-class mt-12 sm:mt-5">
       <h1 className="text-3xl font-bold text-center items-center ml-auto mr-auto mb-12">
-        Recipess
+        Recipes
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 ml-auto mr-auto">
         {recipes.map((recipe) => (
