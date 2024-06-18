@@ -18,7 +18,7 @@ function Footer() {
             </a>
           </div>
           <div className="mt-4 md:mt-0">
-            <p className="text-gray-400">&copy; 2023 Your Company</p>
+            <p className="text-gray-400">&copy; 2024 Your Company</p>
           </div>
         </div>
       </div>
