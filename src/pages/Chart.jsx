@@ -1,53 +1,69 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
+import { useCollection } from "../hooks/useCollection";
+import { useEffect, useState } from "react";
 
 const Chart = () => {
-  const data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
+  const [series, setSeries] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const { user } = useSelector((state) => state.currentUser);
+  const { documents: recipes } = useCollection("recipe", [
+    "uid",
+    "==",
+    user.uid,
+  ]);
+
+  useEffect(() => {
+    if (recipes) {
+      const categoryCounts = recipes.reduce((acc, item) => {
+        const category = item.category;
+        acc[category] = (acc[category] || 0) + 1;
+        return acc;
+      }, {});
+
+      const categorie = Object.keys(categoryCounts);
+      const counts = Object.values(categoryCounts);
+      setCategories(categorie);
+      setSeries(counts);
+    }
+  }, [recipes]);
+
+  const options = {
+    chart: {
+      width: 480,
+      type: "pie",
+    },
+    labels: categories,
+    responsive: [
       {
-        label: "Dataset 1",
-        data: [65, 59, 80, 81, 56, 55, 40],
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        breakpoint: 1600,
+        options: {
+          chart: {
+            width: 480,
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
       },
     ],
   };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Sample Line Chart",
-      },
-    },
-  };
-
-  return <Line data={data} options={options} />;
+  return (
+    <div className="mb-10 container-class">
+      <h2 className="text-base md:text-xl font-bold mb-5">
+        Statistics for the category of recipes
+      </h2>
+      <div id="chart" className="w-full">
+        <ReactApexChart
+          options={options}
+          series={series}
+          type="pie"
+          width={480}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Chart;

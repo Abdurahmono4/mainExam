@@ -19,7 +19,6 @@ const Weather = ({ setWeatherCondition }) => {
         }
       } catch (error) {
         setError(error.message);
-        console.error("Error fetching data:", error);
       }
     };
 
@@ -32,14 +31,11 @@ const Weather = ({ setWeatherCondition }) => {
           },
           (error) => {
             setError("Error getting location: " + error.message);
-            console.error("Error getting location:", error);
-            // Fetch weather for a default location if geolocation fails
             fetchWeather(41.2995, 69.2401);
           }
         );
       } else {
         setError("Geolocation is not supported by this browser.");
-        console.error("Geolocation is not supported by this browser.");
         fetchWeather(41.2995, 69.2401);
       }
     };

@@ -147,9 +147,7 @@ function Create() {
         <button
           type="submit"
           className="btn btn-secondary w-full mt-4 mb-3"
-          onClick={() => {
-            Form.reset();
-          }}
+          onClick={() => {}}
         >
           Submit
         </button>
