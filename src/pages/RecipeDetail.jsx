@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Form } from "react-router-dom";
 import { db } from "../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useSelector, useDispatch } from "react-redux";
@@ -141,6 +141,7 @@ function RecipeDetail() {
         <button
           className="btn btn-secondary bg-orange-500 w-48 add"
           onClick={handleAddToCart}
+          disabled={!product || product.amount === 0}
         >
           <BsCart3 className="" />
           Add to cart

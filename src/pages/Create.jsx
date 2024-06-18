@@ -144,7 +144,13 @@ function Create() {
             value={method}
           ></textarea>
         </label>
-        <button type="submit" className="btn btn-secondary w-full mt-4 mb-3">
+        <button
+          type="submit"
+          className="btn btn-secondary w-full mt-4 mb-3"
+          onClick={() => {
+            Form.reset();
+          }}
+        >
           Submit
         </button>
       </form>

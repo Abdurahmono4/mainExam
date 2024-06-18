@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { calculateTotal } from "../features/productSlice";
 
 function CartPage() {
   const [recipe, setRecipe] = useState([]);
@@ -42,11 +43,12 @@ function CartPage() {
                       <span>Piece:{product.amount} </span>
                     </div>
                     <span className="font-bold text-lg">
-                      {products.length} Items
+                      {products.length}
+                      {product.name}
                     </span>
                     <span className="text-info">Subtotal: ${sum}</span>
                     <div className="card-actions">
-                      <span className="cart-count">{totalAmount}</span>
+                      <span className="cart-count">{calculateTotal}</span>
                     </div>
                   </div>
                 </div>
