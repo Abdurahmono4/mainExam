@@ -41,28 +41,12 @@ function Home() {
       toast.error("Error deleting recipe: " + error.message);
     }
   };
-  const confirm = null;
-  const cancel = null;
-  const options = {
-    title: "Are you sure you want to delete this recipe?",
-    description: "This action cannot be undone.",
-    icon: "🧨",
-    confirmText: "Delete",
-    cancelText: "Cancel",
-    confirmButtonColor: "#e3342f",
-    cancelButtonColor: "#3b82f6",
-    onConfirm: () => {
-      handleDelete(recipe.id);
-    },
-    onCancel: () => {
-      console.log("Cancelled");
-    },
-  };
 
-  function getAProduct(id) {
+  const getAProduct = (id) => {
     const fetchRecipe = async () => {
       const docRef = doc(db, "recipes", id);
-      return await getDoc(docRef);
+      const docSnap = await getDoc(docRef);
+      return docSnap;
     };
 
     fetchRecipe().then((res) => {
@@ -72,10 +56,10 @@ function Home() {
         navigate("/recipe/" + id);
       }
     });
-  }
+  };
 
   return (
-    <div className=" container-class mt-12 sm:mt-5">
+    <div className="container-class mt-12 sm:mt-5">
       <h1 className="text-3xl font-bold text-center items-center ml-auto mr-auto mb-12">
         Recipes
       </h1>
@@ -110,7 +94,18 @@ function Home() {
                 >
                   Read More
                 </button>
-                <button className="btn btn-error btn-sm" onClick={confirm}>
+                <button
+                  className="btn btn-error btn-sm"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        "Are you sure you want to delete this recipe? This action cannot be undone."
+                      )
+                    ) {
+                      handleDelete(recipe.id);
+                    }
+                  }}
+                >
                   Delete
                 </button>
               </div>
