@@ -11,8 +11,6 @@ function BarChart() {
     user.uid,
   ]);
 
-  const recipeInfo = recipe && recipe;
-
   const [options, setOptions] = useState({
     chart: {
       id: "basic-bar",
@@ -47,14 +45,14 @@ function BarChart() {
         },
       ]);
     } else {
-      console.error("No data found in the recepies collection");
+      console.error("No data found in the recipes collection");
     }
   }, [recipe]);
 
   return (
-    <div className="app ">
+    <div className="app">
       <h2 className="font-bold text-xl mb-5">
-        Statistics of recipes depending on cookingtime, (in minutes)
+        Statistics of recipes depending on cooking time (in minutes)
       </h2>
       <div className="row">
         <div className="mixed-chart w-full">

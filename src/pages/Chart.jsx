@@ -49,6 +49,17 @@ const Chart = () => {
     ],
   };
 
+  useEffect(() => {
+    console.log("Fetched recipes:", recipes);
+    if (recipes) {
+      const categoryCounts = recipes.reduce((acc, item) => {
+        const category = item.category;
+        acc[category] = (acc[category] || 0) + 1;
+        return acc;
+      }, {});
+      console.log("Category Counts:", categoryCounts);
+    }
+  }, [recipes]);
   return (
     <div className="mb-10 container-class">
       <h2 className="text-base md:text-xl font-bold mb-5">

@@ -1,21 +1,33 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { calculateTotal } from "../features/productSlice";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  incrementProduct,
+  decrementProduct,
+  removeProduct,
+  calculateTotal,
+} from "../features/productsSlice";
 
 function CartPage() {
-  const [recipe, setRecipe] = useState([]);
   const products = useSelector((state) => state.products.products);
-  const [sum, setSum] = useState(0);
   const totalAmount = useSelector((state) => state.products.totalAmount);
-  function calculateSum() {
-    let summa = 0;
-    if (products.length > 0) {
-      for (let i = 0; i < products.length; i++) {
-        summa += products[i].amount * products[i].price;
-      }
-    }
-    setSum(summa);
-  }
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(calculateTotal());
+  }, [products, dispatch]);
+
+  const handleIncrement = (id) => {
+    dispatch(incrementProduct(id));
+  };
+
+  const handleDecrement = (id) => {
+    dispatch(decrementProduct(id));
+  };
+
+  const handleRemoveProduct = (id) => {
+    dispatch(removeProduct(id));
+  };
+
   return (
     <div className="container-class mx-auto mt-10 pb-10">
       <h1 className="text-3xl font-bold text-center mb-6">Shopping Cart</h1>
@@ -40,15 +52,32 @@ function CartPage() {
                     </figure>
                     <div className="flex justify-between">
                       <span>{product.name}</span>
-                      <span>Piece:{product.amount} </span>
+                      <span>Piece: {product.amount}</span>
                     </div>
-                    <span className="font-bold text-lg">
-                      {products.length}
-                      {product.name}
+                    <span className="font-bold text-lg">{product.name}</span>
+                    <span className="text-info">
+                      Subtotal: ${product.amount * product.price}
                     </span>
-                    <span className="text-info">Subtotal: ${sum}</span>
                     <div className="card-actions">
-                      <span className="cart-count">{calculateTotal}</span>
+                      <button
+                        onClick={() => handleIncrement(product.id)}
+                        className="btn btn-primary"
+                      >
+                        +
+                      </button>
+                      <button
+                        onClick={() => handleDecrement(product.id)}
+                        className="btn btn-secondary"
+                        disabled={product.amount <= 1}
+                      >
+                        -
+                      </button>
+                      <button
+                        onClick={() => handleRemoveProduct(product.id)}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -56,6 +85,9 @@ function CartPage() {
             ))}
           </ul>
         )}
+      </div>
+      <div className="mt-5">
+        <h2 className="text-xl font-bold">Total Amount: ${totalAmount}</h2>
       </div>
     </div>
   );
