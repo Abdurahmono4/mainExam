@@ -1,23 +1,29 @@
-// src/features/userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
-const defaultState = {
-  user: null,
-  authReady: true,
+// Load user from localStorage if available
+const userFromLocalStorage = JSON.parse(localStorage.getItem("user"));
+
+const initialState = {
+  user: userFromLocalStorage || null,
+  authReady: false,
 };
 
 const userSlice = createSlice({
   name: "user",
-  initialState: defaultState,
+  initialState,
   reducers: {
     login: (state, { payload }) => {
       state.user = payload;
+      // Save user to localStorage
+      localStorage.setItem("user", JSON.stringify(payload));
     },
     isAuthReady: (state) => {
       state.authReady = true;
     },
     clear: (state) => {
       state.user = null;
+      // Remove user from localStorage
+      localStorage.removeItem("user");
     },
   },
 });

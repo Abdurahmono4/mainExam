@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    dispatch(login(email, password));
+    dispatch(login({ email, password }));
     toast.success("You are successfully logged in!");
   };
 
@@ -32,12 +32,14 @@ function Login() {
           name="email"
           placeholder="yourgmail@gmail.com"
           className="input input-bordered w-full mt-2"
+          required
         />
         <input
           type="password"
           name="password"
           placeholder="********"
           className="input input-bordered w-full mt-2"
+          required
         />
         <button
           type="submit"
