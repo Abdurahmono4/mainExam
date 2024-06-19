@@ -9,12 +9,13 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { toast } from "react-hot-toast";
-
+import PieChart from "./Chart"; // Chart componentini import qilamiz
 import { getOneProduct } from "../features/productSlice";
 import { useDispatch } from "react-redux";
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
+  const [categoryCounts, setCategoryCounts] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,6 +32,18 @@ function Home() {
 
     fetchRecipes();
   }, []);
+
+  useEffect(() => {
+    const counts = recipes.reduce((acc, recipe) => {
+      // Kategoriyalarni hisoblash
+      const category = recipe.category;
+      if (category) {
+        acc[category] = (acc[category] || 0) + 1;
+      }
+      return acc;
+    }, {});
+    setCategoryCounts(counts);
+  }, [recipes]);
 
   const handleDelete = async (id) => {
     try {
@@ -51,7 +64,6 @@ function Home() {
 
     fetchRecipe().then((res) => {
       if (res.data().title) {
-        console.log(res.data());
         dispatch(getOneProduct({ ...res.data(), id, amount: 0 }));
         navigate("/recipe/" + id);
       }

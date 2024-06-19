@@ -17,9 +17,9 @@ function Create() {
   const addIngredient = (e) => {
     e.preventDefault();
     if (ingredient.trim()) {
-      if (!ingredients.includes(ingredient) && ingredient.trim() !== "") {
-        setIngredients((prev) => [...prev, ingredient]);
-        toast.success("This Item is added successfully");
+      if (!ingredients.includes(ingredient.trim())) {
+        setIngredients((prev) => [...prev, ingredient.trim()]);
+        toast.success("Ingredient added successfully");
       } else {
         toast.error("Ingredient already exists");
       }
@@ -31,6 +31,18 @@ function Create() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      !title ||
+      !method ||
+      !image ||
+      !cookingTime ||
+      ingredients.length === 0 ||
+      !categories
+    ) {
+      toast.error("Please fill all fields");
+      return;
+    }
 
     const newRecipe = {
       title,
@@ -85,8 +97,8 @@ function Create() {
           <div className="mt-1">
             <p className="break-words">
               Ingredients:{" "}
-              {ingredients.map((ing) => (
-                <span className="inline-block mr-2" key={ing}>
+              {ingredients.map((ing, index) => (
+                <span className="inline-block mr-2" key={index}>
                   {ing}
                 </span>
               ))}
@@ -107,7 +119,7 @@ function Create() {
         </label>
         <label className="form-control w-full">
           <div className="label">
-            <span className="label-text">Image:</span>
+            <span className="label-text">Image URL:</span>
           </div>
           <input
             type="url"
@@ -122,14 +134,13 @@ function Create() {
             <span className="label-text">Category</span>
           </div>
           <select
-            name=""
-            id=""
             className="select w-full"
             onChange={(e) => setCategories(e.target.value)}
             value={categories}
           >
+            <option value="">Select a category</option>
             <option value="Milliy taomlar">Milliy taomlar</option>
-            <option value="turkTaomlari">Turk taomlari</option>
+            <option value="Turk taomlari">Turk taomlari</option>
             <option value="Fastfood">Fastfood</option>
           </select>
         </label>
@@ -139,16 +150,12 @@ function Create() {
           </div>
           <textarea
             className="textarea textarea-bordered h-24 w-full"
-            placeholder="Method"
+            placeholder="Describe the method"
             onChange={(e) => setMethod(e.target.value)}
             value={method}
           ></textarea>
         </label>
-        <button
-          type="submit"
-          className="btn btn-secondary w-full mt-4 mb-3"
-          onClick={() => {}}
-        >
+        <button type="submit" className="btn btn-secondary w-full mt-4 mb-3">
           Submit
         </button>
       </form>
