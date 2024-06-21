@@ -51,7 +51,7 @@ function RecipeDetail() {
       <div className="carousel carousel-center p-4 space-x-4 bg-neutral rounded-box">
         <div className="carousel-item">
           <img
-            src="https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/97/42/9c.jpg"
+            src={recipe.image}
             className="rounded-box"
             alt="carousel-item-1"
           />
