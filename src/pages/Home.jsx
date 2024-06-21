@@ -79,7 +79,7 @@ function Home() {
         {recipes.map((recipe) => (
           <div
             key={recipe.id}
-            className="card bg-base-100 shadow-md rounded-lg overflow-hidden ml-auto mr-auto transform transition-transform duration-300 hover:scale-105 active:scale-95 hover:shadow-lg"
+            className="card bg-base-100 shadow-md rounded-lg overflow-hidden ml-auto mr-auto transform transition-transform duration-300  active:scale-95 hover:shadow-lg"
           >
             <figure>
               <img
