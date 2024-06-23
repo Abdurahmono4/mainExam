@@ -1,32 +1,36 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  incrementProduct,
-  decrementProduct,
+  increaseAmount,
+  decreaseAmount,
   removeProduct,
   calculateTotal,
-} from "../features/productsSlice";
+} from "../features/productSlice";
 
 function CartPage() {
   const products = useSelector((state) => state.products.products);
-  const totalAmount = useSelector((state) => state.products.totalAmount);
+  const totalPrice = useSelector((state) => state.products.price);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(calculateTotal());
+    dispatch(calculateTotal()); // Calculate total price on component mount
   }, [products, dispatch]);
 
   const handleIncrement = (id) => {
-    dispatch(incrementProduct(id));
+    dispatch(increaseAmount(id));
   };
 
   const handleDecrement = (id) => {
-    dispatch(decrementProduct(id));
+    dispatch(decreaseAmount(id));
   };
 
   const handleRemoveProduct = (id) => {
     dispatch(removeProduct(id));
   };
+
+  useEffect(() => {
+    localStorage.setItem("cartProducts", JSON.stringify(products));
+  }, [products]);
 
   return (
     <div className="container-class mx-auto mt-10 pb-10">
@@ -45,7 +49,7 @@ function CartPage() {
                   <div className="card-body card">
                     <figure>
                       <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlmiKYctKUVaYQs4EExOC7LqREBxfMy4eC0Q&s"
+                        src={product.image} // Ensure image URL is dynamic
                         alt=""
                         className="w-full h-32 sm:h-48 object-cover"
                       />
@@ -68,7 +72,7 @@ function CartPage() {
                       <button
                         onClick={() => handleDecrement(product.id)}
                         className="btn btn-secondary"
-                        disabled={product.amount <= 1}
+                        disabled={product.amount <= 0}
                       >
                         -
                       </button>
@@ -87,7 +91,7 @@ function CartPage() {
         )}
       </div>
       <div className="mt-5">
-        <h2 className="text-xl font-bold">Total Amount: ${totalAmount}</h2>
+        <h2 className="text-xl font-bold">Total Amount: ${totalPrice}</h2>
       </div>
     </div>
   );
