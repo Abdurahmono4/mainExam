@@ -204,7 +204,58 @@ function RecipeDetail() {
             alt="carousel-item-1"
           />
         </div>
-        {/* ...other carousel items... */}
+        <div className="carousel-item">
+          <img
+            src="https://zira.uz/wp-content/uploads/2020/01/kovurma-shurpa.jpg"
+            className="rounded-box"
+            alt="carousel-item-2"
+            width={604}
+            height={246}
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4kV_1xBvf3PhGXxL9pDBYrzj-efhbzLFK8w&s"
+            className="rounded-box"
+            alt="carousel-item-3"
+            width={604}
+            height={246}
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://cp.platina.uz/media/uploads/2023/12/20/photo_2023-12-20_14-07-05-2.jpg"
+            className="rounded-box"
+            alt="carousel-item-4"
+            width={704}
+            height={246}
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://t3.ftcdn.net/jpg/03/56/15/56/360_F_356155654_KnID81u6eAFFmQU8cB7y4ThqUu8nJEUT.jpg"
+            className="rounded-box"
+            alt="carousel-item-5"
+            width={704}
+            height={246}
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://beksomsa.netlify.app/images/shorva.jpg"
+            className="rounded-box"
+            alt="carousel-item-6"
+            width={704}
+            height={246}
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg"
+            className="rounded-box"
+            alt="carousel-item-7"
+          />
+        </div>
       </div>
       <p className="text-lg mt-6 ml-auto mr-auto">{recipe.method}</p>
       <p className="text-lg mt-4">
